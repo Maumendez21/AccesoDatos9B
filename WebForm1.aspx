@@ -33,6 +33,30 @@
             </asp:GridView>
             <br />
             <br />
+            <br />
+            ID:
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+&nbsp;&nbsp; Nombre:
+            <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Button" />
+            <br />
+            <br />
+            idProd:
+            <asp:TextBox ID="txtIdProd" runat="server"></asp:TextBox>
+&nbsp;Descripcion:
+            <asp:TextBox ID="txtDescripcion" runat="server"></asp:TextBox>
+&nbsp;Categoria
+            <asp:TextBox ID="txtCategoria" runat="server"></asp:TextBox>
+&nbsp;precio
+            <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Button" />
+            <br />
+            <br />
+            <br />
         </div>
     </form>
 </body>

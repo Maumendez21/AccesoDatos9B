@@ -118,5 +118,87 @@ namespace WebPruebaAccesoSQL
 
             }
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            SqlParameter first = new SqlParameter("id", SqlDbType.Int);
+            SqlParameter second = new SqlParameter("nombre", SqlDbType.NVarChar, 50);
+
+            first.Value = TextBox2.Text;
+            second.Value = TextBox3.Text;
+
+            string sentencia = "INSERT INTO empleado VALUES(@id, @nombre)";
+            SqlConnection conexion = null;
+            string mensaje = "";
+            Boolean resp = false;
+
+            conexion = db.AbrirConexion(ref mensaje);
+            //resp = db.ModificaBDInsegura(sentencia, conexion, ref mensaje);
+            resp = db.InsertaEmpleadoConParametros(sentencia, conexion, ref mensaje, first, second);
+            //resp = db.ModificiaParametrosUnPocoMasSegura(sentencia, conexion, ref mensaje, );
+
+            if (resp)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "insertButton5", "msgbox(`Correcto`, `" + mensaje + "`, `success`)", true);
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "errorButton5", "msgbox(`Error`, `" + mensaje + "`, `error`)", true);
+            }
+
+
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            SqlParameter[] parametros = new SqlParameter[4];
+
+            parametros[0] = new SqlParameter("idprod", SqlDbType.Int);
+            parametros[0].Value = txtIdProd.Text;
+            parametros[0].Direction = ParameterDirection.Input;
+
+
+            parametros[1] = new SqlParameter 
+            { 
+                ParameterName = "descri", 
+                SqlDbType = SqlDbType.NVarChar, 
+                Size = 50,
+                Direction = ParameterDirection.Input, 
+                Value = txtDescripcion.Text 
+            };
+            parametros[2] = new SqlParameter 
+            { 
+                ParameterName = "cate", 
+                SqlDbType = SqlDbType.NVarChar, 
+                Size = 15,
+                Direction = ParameterDirection.Input, 
+                Value = txtCategoria.Text 
+            };
+
+            parametros[3] = new SqlParameter 
+            { 
+                ParameterName = "precio", 
+                SqlDbType = SqlDbType.Float,
+                Direction = ParameterDirection.Input, 
+                Value = txtPrecio.Text 
+            };
+
+            string sentencia = "INSERT INTO productos VALUES(@idprod, @descri, @cate, @precio)";
+            SqlConnection conexion = null;
+            string mensaje = "";
+            Boolean resp = false;
+
+            conexion = db.AbrirConexion(ref mensaje);
+            resp = db.ModificiaParametrosUnPocoMasSegura(sentencia, conexion, ref mensaje, parametros);
+
+            if (resp)
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "insertButton5", "msgbox(`Correcto`, `" + mensaje + "`, `success`)", true);
+            }
+            else
+            {
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "errorButton5", "msgbox(`Error`, `" + mensaje + "`, `error`)", true);
+            }
+        }
     }
 }
