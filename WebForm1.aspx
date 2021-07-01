@@ -32,6 +32,7 @@
             <asp:GridView ID="GridView1" runat="server" Height="159px" Width="499px">
             </asp:GridView>
             <br />
+            <asp:Button ID="Button7" runat="server" Text="Button" />
             <br />
             <br />
             ID:
